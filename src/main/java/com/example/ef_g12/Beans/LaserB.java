@@ -11,6 +11,25 @@ public class LaserB {
     private float tiempo;
     private String fecha;
 
+    private boolean aprobado;
+    private String motivoR;
+
+    public boolean isAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(boolean aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public String getMotivoR() {
+        return motivoR;
+    }
+
+    public void setMotivoR(String motivoR) {
+        this.motivoR = motivoR;
+    }
+
     public int getIdCorte() {
         return idCorte;
     }

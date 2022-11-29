@@ -14,6 +14,25 @@ public class ImpresionB {
 
     private String url;
 
+    private boolean aprobado;
+    private String motivoR;
+
+    public boolean isAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(boolean aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public String getMotivoR() {
+        return motivoR;
+    }
+
+    public void setMotivoR(String motivoR) {
+        this.motivoR = motivoR;
+    }
+
     public String getUrl() {
         return url;
     }

@@ -10,7 +10,26 @@ public class EscaneoB {
     private float costo;
     private float tiempo;
     private String fecha;
-    private String escaneo;
+
+
+    private boolean aprobado;
+    private String motivoR;
+
+    public boolean isAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(boolean aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public String getMotivoR() {
+        return motivoR;
+    }
+
+    public void setMotivoR(String motivoR) {
+        this.motivoR = motivoR;
+    }
 
     public int getIdEscaneo() {
         return idEscaneo;
