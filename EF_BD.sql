@@ -42,11 +42,13 @@ CREATE TABLE IF NOT EXISTS `EF_BD`.`Impresion` (
   `costo` FLOAT NULL,
   `tiempo` FLOAT NULL,
   `fecha` DATE NULL,
-  `table1_idUsuario` INT NOT NULL,
+  `Usuario_idUsuario` INT NOT NULL,
+  `aprobado` TINYINT NULL,
+  `motivorechazo` VARCHAR(200) NULL,
   PRIMARY KEY (`idImpresion`),
-  INDEX `fk_Impresion_table1_idx` (`table1_idUsuario` ASC) VISIBLE,
-  CONSTRAINT `fk_Impresion_table1`
-    FOREIGN KEY (`table1_idUsuario`)
+  INDEX `fk_Impresion_Usuario_idx` (`Usuario_idUsuario` ASC) VISIBLE,
+  CONSTRAINT `fk_Impresion_Usuario`
+    FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `EF_BD`.`Usuario` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -66,11 +68,13 @@ CREATE TABLE IF NOT EXISTS `EF_BD`.`Laser` (
   `costo` FLOAT NULL,
   `tiempo` FLOAT NULL,
   `fecha` DATE NULL,
-  `table1_idUsuario` INT NOT NULL,
+  `Usuario_idUsuario` INT NOT NULL,
+  `aprobado` TINYINT NULL,
+  `motivorechazo` VARCHAR(200) NULL,
   PRIMARY KEY (`idCorte`),
-  INDEX `fk_Laser_table11_idx` (`table1_idUsuario` ASC) VISIBLE,
-  CONSTRAINT `fk_Laser_table11`
-    FOREIGN KEY (`table1_idUsuario`)
+  INDEX `fk_Laser_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
+  CONSTRAINT `fk_Laser_Usuario1`
+    FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `EF_BD`.`Usuario` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -89,12 +93,13 @@ CREATE TABLE IF NOT EXISTS `EF_BD`.`Escaneo` (
   `costo` FLOAT NULL,
   `tiempo` FLOAT NULL,
   `fecha` DATE NULL,
-  `Escaneocol` VARCHAR(45) NULL,
-  `table1_idUsuario` INT NOT NULL,
+  `Usuario_idUsuario` INT NOT NULL,
+  `aprobado` TINYINT NULL,
+  `motivorechazo` VARCHAR(200) NULL,
   PRIMARY KEY (`idEscaneo`),
-  INDEX `fk_Escaneo_table11_idx` (`table1_idUsuario` ASC) VISIBLE,
-  CONSTRAINT `fk_Escaneo_table11`
-    FOREIGN KEY (`table1_idUsuario`)
+  INDEX `fk_Escaneo_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
+  CONSTRAINT `fk_Escaneo_Usuario1`
+    FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `EF_BD`.`Usuario` (`idUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
