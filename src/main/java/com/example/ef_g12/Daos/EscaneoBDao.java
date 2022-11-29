@@ -24,6 +24,8 @@ public class EscaneoBDao {
                 escaneo.setAltura(rs.getInt(4));
                 escaneo.setCosto(rs.getFloat(5));
                 escaneo.setTiempo(rs.getFloat(6));
+                escaneo.setFecha(rs.getString(7));
+
 
 
 
