@@ -24,6 +24,8 @@ public class EscaneoBDao extends DaoBase{
                 escaneo.setAltura(rs.getInt(4));
                 escaneo.setCosto(rs.getFloat(5));
                 escaneo.setTiempo(rs.getFloat(6));
+                escaneo.setFecha(rs.getString(7));
+
 
 
 
@@ -38,15 +40,15 @@ public class EscaneoBDao extends DaoBase{
 
     }
 
-    public void crearEscaneo(String jobId, String jobTitle, int minSalary, int maxSalary) {
+    public void crearEscaneo(String idEscaneo, String largo, int ancho, int altura) {
 
         String sql = "INSERT INTO jobs (idEscaneo,largo,ancho,altura) VALUES (?,?,?,?)";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, );
-            pstmt.setString(2, );
-            pstmt.setInt(3, );
-            pstmt.setInt(4, );
+            pstmt.setString(1, idEscaneo);
+            pstmt.setString(2, largo);
+            pstmt.setInt(3, ancho);
+            pstmt.setInt(4,altura );
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

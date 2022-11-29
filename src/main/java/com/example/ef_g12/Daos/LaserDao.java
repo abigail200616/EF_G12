@@ -39,15 +39,15 @@ public class LaserDao extends DaoBase{
 
     }
 
-    public void crearLaser(String jobId, String jobTitle, int minSalary, int maxSalary) {
+    public void crearLaser(String idCorte, int grosor, String material, String dimensiones) {
 
         String sql = "INSERT INTO jobs (idCorte,grosor,material,dimensiones) VALUES (?,?,?,?)";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, jobId);
-            pstmt.setString(2, jobTitle);
-            pstmt.setInt(3, minSalary);
-            pstmt.setInt(4, maxSalary);
+            pstmt.setString(1, idCorte);
+            pstmt.setInt(2, grosor);
+            pstmt.setString(3, material);
+            pstmt.setString(4, dimensiones);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

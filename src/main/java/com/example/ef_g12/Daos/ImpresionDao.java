@@ -39,15 +39,17 @@ public class ImpresionDao extends DaoBase{
 
     }
 
-    public void crearEscaneo(String jobId, String jobTitle, int minSalary, int maxSalary) {
+    public void crearEscaneo(String idImpresion, int densidad, int grosor, int altura, String material, String autoservicio) {
 
         String sql = "INSERT INTO IMPRESIONES (idEscaneo,largo,ancho,altura) VALUES (?,?,?,?)";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, );
-            pstmt.setString(2, );
-            pstmt.setInt(3, );
-            pstmt.setInt(4, );
+            pstmt.setString(1, idImpresion);
+            pstmt.setInt(2, densidad);
+            pstmt.setInt(3,grosor );
+            pstmt.setInt(4, altura);
+            pstmt.setString(5, material);
+            pstmt.setString(6, autoservicio);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
