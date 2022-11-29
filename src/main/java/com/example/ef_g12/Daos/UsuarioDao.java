@@ -2,10 +2,7 @@ package com.example.ef_g12.Daos;
 
 import com.example.ef_g12.Beans.UsuarioB;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 import static java.sql.DriverManager.getConnection;
@@ -39,5 +36,27 @@ public class UsuarioDao {
         }
 
         return listaUsuarios;
+    }
+
+    public void crearUsuario(UsuarioB usuario) {
+
+
+        String sql = "INSERT INTO employees (nombre, apellido, correo) "
+                + "VALUES (?, ?, ?)";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, usuario.getNombre());
+            pstmt.setString(2, usuario.getApellido());
+            pstmt.setString(3, usuario.getCorreo());
+
+
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
