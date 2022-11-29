@@ -2,10 +2,7 @@ package com.example.ef_g12.Daos;
 
 import com.example.ef_g12.Beans.EscaneoB;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 import static java.sql.DriverManager.getConnection;
@@ -25,6 +22,10 @@ public class EscaneoBDao {
                 escaneo.setLargo(rs.getInt(2));
                 escaneo.setAncho(rs.getInt(3));
                 escaneo.setAltura(rs.getInt(4));
+                escaneo.setCosto(rs.getFloat(5));
+                escaneo.setTiempo(rs.getFloat(6));
+
+
 
                 listaEscaneos.add(escaneo);
             }
@@ -35,5 +36,20 @@ public class EscaneoBDao {
 
         return listaEscaneos;
 
+    }
+
+    public void crearEscaneo(String jobId, String jobTitle, int minSalary, int maxSalary) {
+
+        String sql = "INSERT INTO jobs (idEscaneo,largo,ancho,altura) VALUES (?,?,?,?)";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, jobId);
+            pstmt.setString(2, jobTitle);
+            pstmt.setInt(3, minSalary);
+            pstmt.setInt(4, maxSalary);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
