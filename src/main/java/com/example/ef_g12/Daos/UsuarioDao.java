@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static java.sql.DriverManager.getConnection;
 
-public class UsuarioDao {
+public class UsuarioDao extends DaoBase{
 
     public ArrayList<UsuarioB> listarUsuarios() {
 
@@ -42,15 +42,13 @@ public class UsuarioDao {
     public void crearUsuario(UsuarioB usuario) {
 
 
-        String sql = "INSERT INTO employees (nombre, apellido, correo) "
-                + "VALUES (?, ?, ?)";
+        String sql = "INSERT INTO usuario (correo, contrasena) VALUES (?,sha2(?,256))";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, usuario.getNombre());
-            pstmt.setString(2, usuario.getApellido());
-            pstmt.setString(3, usuario.getCorreo());
+            pstmt.setString(1, usuario.getCorreo());
+            pstmt.setString(2, usuario.getContraseña());
 
 
 
@@ -60,4 +58,5 @@ public class UsuarioDao {
             ex.printStackTrace();
         }
     }
+
 }

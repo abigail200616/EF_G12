@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static java.sql.DriverManager.getConnection;
 
-public class EscaneoBDao {
+public class EscaneoBDao extends DaoBase{
 
     public ArrayList<EscaneoB> obtenerListaTrabajos() {
         ArrayList<EscaneoB> listaEscaneos = new ArrayList<>();

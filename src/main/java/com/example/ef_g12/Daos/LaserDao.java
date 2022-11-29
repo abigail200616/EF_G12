@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static java.sql.DriverManager.getConnection;
 
-public class LaserDao {
+public class LaserDao extends DaoBase{
 
     public ArrayList<LaserB> obtenerListaTrabajos() {
         ArrayList<LaserB> listaLaser = new ArrayList<>();

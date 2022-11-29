@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static java.sql.DriverManager.getConnection;
 
-public class ImpresionDao {
+public class ImpresionDao extends DaoBase{
 
     public ArrayList<ImpresionB> obtenerListaTrabajos() {
         ArrayList<ImpresionB> listaImpresiones = new ArrayList<>();

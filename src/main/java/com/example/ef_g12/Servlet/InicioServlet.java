@@ -1,6 +1,7 @@
 package com.example.ef_g12.Servlet;
 
 import com.example.ef_g12.Beans.UsuarioB;
+import com.example.ef_g12.Daos.UsuarioDao;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -39,21 +40,17 @@ public class InicioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        DaoCliente daoCliente = new DaoCliente();
-
-        String documento = request.getParameter("documento");
+        UsuarioDao daoUsuario = new UsuarioDao();
+        String action = request.getParameter("action");
+        String correo = request.getParameter("correo");
         String contrasena  = request.getParameter("contrasena");
-        UsuarioB credentials = daoCliente.buscarUsuario(documento,contrasena);
-        if(credentials !=null){
+        UsuarioB usuario = daoUsuario.crearUsuario(correo, contrasena);
+        if(usuario !=null){
             HttpSession session = request.getSession();
-            session.setAttribute("credentials",credentials);
-            if (credentials.getTipoUsuario()==1){
-                response.sendRedirect(request.getContextPath() + "/ServletAdmin");
-            }else if (credentials.getTipoUsuario()==2){
-                response.sendRedirect(request.getContextPath() + "/ServletUser");
-            }
+            session.setAttribute("userlogged",usuario);
         }else{
-            response.sendRedirect(request.getContextPath() + "ServletLogin");
+            response.sendRedirect(request.getContextPath() + "InicioServlet");
         }
+
     }
 }
