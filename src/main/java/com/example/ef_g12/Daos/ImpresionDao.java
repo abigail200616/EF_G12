@@ -1,46 +1,47 @@
 package com.example.ef_g12.Daos;
 
 import com.example.ef_g12.Beans.EscaneoB;
+import com.example.ef_g12.Beans.ImpresionB;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 import static java.sql.DriverManager.getConnection;
 
-public class EscaneoBDao {
+public class ImpresionDao {
 
-    public ArrayList<EscaneoB> obtenerListaTrabajos() {
-        ArrayList<EscaneoB> listaEscaneos = new ArrayList<>();
+    public ArrayList<ImpresionB> obtenerListaTrabajos() {
+        ArrayList<ImpresionB> listaImpresiones = new ArrayList<>();
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM Escaneo");) {
 
             while (rs.next()) {
-                EscaneoB escaneo = new EscaneoB();
-                escaneo.setIdEscaneo(rs.getInt(1));
-                escaneo.setLargo(rs.getInt(2));
-                escaneo.setAncho(rs.getInt(3));
-                escaneo.setAltura(rs.getInt(4));
-                escaneo.setCosto(rs.getFloat(5));
-                escaneo.setTiempo(rs.getFloat(6));
+                EscaneoB impresion = new EscaneoB();
+                impresion.setIdEscaneo(rs.getInt(1));
+                impresion.setLargo(rs.getInt(2));
+                impresion.setAncho(rs.getInt(3));
+                impresion.setAltura(rs.getInt(4));
+                impresion.setCosto(rs.getFloat(5));
+                impresion.setTiempo(rs.getFloat(6));
 
 
 
-                listaEscaneos.add(escaneo);
+                listaImpresiones.add(impresion);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return listaEscaneos;
+        return listaImpresiones;
 
     }
 
     public void crearEscaneo(String jobId, String jobTitle, int minSalary, int maxSalary) {
 
-        String sql = "INSERT INTO jobs (idEscaneo,largo,ancho,altura) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO IMPRESIONES (idEscaneo,largo,ancho,altura) VALUES (?,?,?,?)";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, );

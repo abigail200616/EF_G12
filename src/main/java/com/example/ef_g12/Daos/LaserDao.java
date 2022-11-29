@@ -11,37 +11,37 @@ import static java.sql.DriverManager.getConnection;
 public class LaserDao {
 
     public ArrayList<LaserB> obtenerListaTrabajos() {
-        ArrayList<EscaneoBDao> listaEscaneos = new ArrayList<>();
+        ArrayList<LaserB> listaLaser = new ArrayList<>();
 
         try (Connection conn = getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM Escaneo");) {
 
             while (rs.next()) {
-                EscaneoB escaneo = new EscaneoB();
-                escaneo.setIdEscaneo(rs.getInt(1));
-                escaneo.setLargo(rs.getInt(2));
-                escaneo.setAncho(rs.getInt(3));
-                escaneo.setAltura(rs.getInt(4));
-                escaneo.setCosto(rs.getFloat(5));
-                escaneo.setTiempo(rs.getFloat(6));
+                LaserB laser = new LaserB();
+                laser.setIdCorte(rs.getInt(1));
+                laser.setGrosor(rs.getString(2));
+                laser.setMaterial(rs.getString(3));
+                laser.setDimensiones(rs.getInt(4));
+                laser.setCosto(rs.getFloat(5));
+                laser.setTiempo(rs.getFloat(6));
 
 
 
-                listaEscaneos.add(escaneo);
+                listaLaser.add(laser);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return listaEscaneos;
+        return listaLaser;
 
     }
 
-    public void crearEscaneo(String jobId, String jobTitle, int minSalary, int maxSalary) {
+    public void crearLaser(String jobId, String jobTitle, int minSalary, int maxSalary) {
 
-        String sql = "INSERT INTO jobs (idEscaneo,largo,ancho,altura) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO jobs (idCorte,grosor,material,dimensiones) VALUES (?,?,?,?)";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, jobId);
